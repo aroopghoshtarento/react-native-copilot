@@ -85,8 +85,8 @@ const copilot = ({
         if (this.state.scrollView) {
           const scrollView = this.state.scrollView;
           const relativeSize = await this.state.currentStep.wrapper.measureLayout(ReactNative.findNodeHandle(scrollView), (x, y, w, h) => {
-            const yOffsett = y > 700 ? y - 200 : h;
-            if(y > 700)scrollView.scrollTo({ y: yOffsett, animated: false });
+            const yOffsett = y > 600 ? y - 200 : h;
+            if(y > 600)scrollView.scrollTo({ y: yOffsett, animated: false });
           });
         }
         setTimeout(() => {
