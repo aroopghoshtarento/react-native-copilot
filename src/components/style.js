@@ -26,15 +26,17 @@ export default StyleSheet.create({
     position: 'absolute',
     paddingTop: 15,
     paddingHorizontal: 15,
-    backgroundColor: '#fff',
+    backgroundColor: 'transparent',
     borderRadius: 3,
     overflow: 'hidden',
   },
   tooltipText: {
-
+    color: 'white',
+    fontSize: 18
   },
   tooltipContainer: {
     flex: 1,
+    color: 'white'
   },
   stepNumberContainer: {
     position: 'absolute',
@@ -66,7 +68,7 @@ export default StyleSheet.create({
   bottomBar: {
     marginTop: 10,
     flexDirection: 'row',
-    justifyContent: 'flex-end',
+    justifyContent: 'flex-start',
   },
   overlayRectangle: {
     position: 'absolute',
@@ -75,6 +77,7 @@ export default StyleSheet.create({
     top: 0,
     bottom: 0,
     right: 0,
+    borderRadius: 20,
   },
   overlayContainer: {
     position: 'absolute',
@@ -82,5 +85,6 @@ export default StyleSheet.create({
     top: 0,
     bottom: 0,
     right: 0,
+    borderRadius: 20,
   },
 });
