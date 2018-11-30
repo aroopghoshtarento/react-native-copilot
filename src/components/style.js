@@ -61,7 +61,7 @@ export default StyleSheet.create({
     padding: 10,
   },
   buttonText: {
-    color: '#27ae60',
+    color: '#3FAFF5',
   },
   bottomBar: {
     marginTop: 10,
