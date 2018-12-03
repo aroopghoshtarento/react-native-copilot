@@ -1,6 +1,6 @@
 // @flow
 import React, { Component } from 'react';
-import ReactNative from "react-native";
+import ReactNative, { Dimensions, Platform, InteractionManager } from "react-native";
 import PropTypes from 'prop-types';
 
 import { View } from 'react-native';
@@ -14,6 +14,8 @@ import { OFFSET_WIDTH } from '../components/style';
 import { getFirstStep, getLastStep, getStepNumber, getPrevStep, getNextStep } from '../utilities';
 
 import type { Step, CopilotContext } from '../types';
+const deviceHeight = Dimensions.get("window").height;
+const platform = Platform.OS;
 
 /*
 This is the maximum wait time for the steps to be registered before starting the tutorial
@@ -85,8 +87,19 @@ const copilot = ({
         if (this.state.scrollView) {
           const scrollView = this.state.scrollView;
           const relativeSize = await this.state.currentStep.wrapper.measureLayout(ReactNative.findNodeHandle(scrollView), (x, y, w, h) => {
-            const yOffsett = y > 600 ? y - 200 : h;
-            if(y > 600)scrollView.scrollTo({ y: yOffsett, animated: false });
+            const yOffsett = y > deviceHeight - deviceHeight / 10 ? y - 200 : h;
+            console.log(y)
+            if (y > deviceHeight - deviceHeight / 10) {
+              if (platform === 'ios')
+                scrollView.scrollTo({ y: yOffsett, animated: false });
+              else {
+                setTimeout(() => {
+                  scrollView.scrollTo({ x: 0, y: 0 });
+                }, 0);
+              }
+
+            }
+
           });
         }
         setTimeout(() => {
@@ -178,7 +191,7 @@ const copilot = ({
           width: size.width + OFFSET_WIDTH,
           height: size.height + OFFSET_WIDTH,
           left: size.x - (OFFSET_WIDTH / 2),
-          top: size.y - (OFFSET_WIDTH / 2),
+          top: size.y - (OFFSET_WIDTH / 2) + (platform === 'android' ? 20 : 0),
         });
       }
 
